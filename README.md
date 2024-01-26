@@ -1,6 +1,13 @@
-# Welcome to Remix!
+# Akakce Case
 
-- [Remix Docs](https://remix.run/docs)
+This project has been created with these technologies and tools:
+
+- `React`
+- `Typescript`
+- `Remix`
+- `TailwindCSS`
+- `MockiAPI`
+- `Eslint`
 
 ## Development
 
