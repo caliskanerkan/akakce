@@ -27,7 +27,7 @@ module.exports = {
     // React
     {
       files: ["**/*.{js,jsx,ts,tsx}"],
-      plugins: ["react", "jsx-a11y"],
+      plugins: ["react", "jsx-a11y", "react-hooks"],
       extends: [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
@@ -46,6 +46,10 @@ module.exports = {
         "import/resolver": {
           typescript: {},
         },
+      },
+      rules: {
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
       },
     },
 
@@ -70,6 +74,9 @@ module.exports = {
         "plugin:import/recommended",
         "plugin:import/typescript",
       ],
+      rules: {
+        "@typescript-eslint/no-explicit-any": "off",
+      },
     },
 
     // Node

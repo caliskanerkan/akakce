@@ -1,41 +1,47 @@
-import type { MetaFunction } from "@remix-run/node";
+import { MetaFunction, useLoaderData, useRouteError } from "@remix-run/react";
+import { ErrorBoundary as Error } from "~/common/components/errorBoundary/ErrorBoundary";
+import { getProducts } from "~/products/controller/ProductService";
+import { ProductResponseType } from "~/products/model/Product";
+import { ProductListContainer } from "~/products/view/productList/ProductListContainer";
+
+export async function loader() {
+  try {
+    const response = await getProducts();
+    return response;
+  } catch (error) {
+    return error;
+  }
+}
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    {
+      title: "Ne Nerede En Ucuz Akakçe'de",
+    },
+    {
+      property: "og:title",
+      content: "En ucuza burada bulabilirsiniz",
+    },
   ];
 };
 
-export default function Index() {
+export default function ProductsPage() {
+  const {
+    result: { products, nextUrl, horizontalProducts },
+  } = useLoaderData<ProductResponseType>();
+
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className='py-4 flex flex-col gap-2'>
+      <ProductListContainer
+        products={products}
+        horizontalProducts={horizontalProducts}
+        nextURL={nextUrl}
+      />
     </div>
   );
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  return <Error error={error} />;
 }
