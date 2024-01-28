@@ -12,13 +12,20 @@ interface ProductDetailProps {
 
 export const ProductDetail = ({ product }: ProductDetailProps) => {
   return (
-    <div className='py-4 h-[380px]'>
+    <div className='py-4 h-[380px]' data-testid='productDetail-component'>
       <Card>
         <div className='flex gap-8 h-full' title={product.mkName}>
-          <img src={product.imageUrl} alt='' className='object-contain' />
+          <img
+            src={product.imageUrl}
+            alt={product.mkName}
+            className='object-contain'
+          />
           <div className='flex flex-col gap-1'>
             <div className='text-blue-400'> {product.mkName} </div>
-            <div className='text-gray-700 font-semibold'>
+            <div
+              className='text-gray-700 font-semibold'
+              data-testid='product-name'
+            >
               {product.productName}
             </div>
             <div className='flex gap-2 items-center'>
@@ -38,7 +45,10 @@ export const ProductDetail = ({ product }: ProductDetailProps) => {
                   {convertToCurrency(product.price)}
                 </div>
                 {product.freeShipping ? (
-                  <div className='text-green-700 font-semibold text-sm flex items-center gap-1'>
+                  <div
+                    data-testid='freeShipping'
+                    className='text-green-700 font-semibold text-sm flex items-center gap-1'
+                  >
                     <FaShippingFast />
                     Ücretsiz Kargo
                   </div>

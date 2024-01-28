@@ -15,6 +15,7 @@ export const Product = ({ product }: ProductProps) => {
   return (
     <Link
       to={`/products/${product.code}`}
+      data-testid='product-component'
       className='shadow p-4 rounded-xl bg-white flex flex-col h-[260px] gap-1'
       title={product.name}
     >

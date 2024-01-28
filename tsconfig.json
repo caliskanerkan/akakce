@@ -10,6 +10,7 @@
     "target": "ES2022",
     "strict": true,
     "allowJs": true,
+    "types": ["@testing-library/jest-dom"],
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
